@@ -9,10 +9,18 @@ class SignIn extends Component {
     state = {
         selectedUser : undefined
     }
-    onSelectUser(value) {
+
+
+    onSelectUser = (UserObj) => {
         this.setState(() => ({
-            selectedUser: value
+            selectedUser: UserObj.value
           }))
+      }
+
+    onUserLogin = () => {
+        console.log('SignIn onUserLogin his.state.selectedUser');
+        console.log(this.state.selectedUser);
+        this.props.onUserLogIn(this.state.selectedUser);
     }
 
     render() {
@@ -35,9 +43,9 @@ class SignIn extends Component {
 
         return(
             <div className='create-contact-form'>
-                <Dropdown options={usersOptionsDropDown} onChange={() => this.onSelectUser}
+                <Dropdown options={usersOptionsDropDown} onChange={this.onSelectUser}
                                                  value={this.state.selectedUser} placeholder="Select a user" />
-                <button className='heart-button' onClick={() => this.props.onUserLogIn(this.state.selectedUser)}>
+                <button className='heart-button' onClick={this.onUserLogin}>
                     Sign In
                 </button>
             </div>

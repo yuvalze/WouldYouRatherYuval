@@ -18,16 +18,17 @@ class App extends Component {
   }
 
   onUserLogIn(userId) {
+    console.log('App onUserLogIn userId');
+    console.log(userId);
     this.setState(
       {authedUser: userId}
     )
   }
 
   render() {
-    console.log('App render users');
-    console.log(this.props.users);
-    console.log('App render loading');
-    console.log(this.props.loading);
+    console.log('App render authedUser');
+    console.log(this.state.authedUser);
+
     return (
       <Router>
         <Fragment>
