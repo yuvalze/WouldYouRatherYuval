@@ -6,8 +6,13 @@ import PropTypes from 'prop-types';
 
 class SignIn extends Component {
 
-    onSelect(value) {
-        console.log('onSelect' + value);
+    state = {
+        selectedUser : undefined
+    }
+    onSelectUser(value) {
+        this.setState(() => ({
+            selectedUser: value
+          }))
     }
 
     render() {
@@ -29,15 +34,20 @@ class SignIn extends Component {
         const userDefaultOption = usersOptionsDropDown[0];
 
         return(
-            <div>
-                <Dropdown options={usersOptionsDropDown} onChange={this.usersOptionsDropDown} value={userDefaultOption} placeholder="Select an option" />
+            <div className='create-contact-form'>
+                <Dropdown options={usersOptionsDropDown} onChange={() => this.onSelectUser}
+                                                 value={this.state.selectedUser} placeholder="Select a user" />
+                <button className='heart-button' onClick={() => this.props.onUserLogIn(this.state.selectedUser)}>
+                    Sign In
+                </button>
             </div>
         )
     }
 }
 
 SignIn.propTypes = {
-    users: PropTypes.object.isRequired
+    users: PropTypes.object.isRequired,
+    onUserLogIn:  PropTypes.func.isRequired
   };
 
 export default SignIn
