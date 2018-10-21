@@ -6,29 +6,19 @@ import LoadingBar from 'react-redux-loading'
 import Nav from './Nav'
 import SignIn from './SignIn'
 import HomePage from './HomePage'
+import { setAuthedUser } from '../actions/authedUser'
 
 class App extends Component {
-
-  state = {
-    authedUser: undefined
-  };
 
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
 
   onUserLogIn(userId) {
-    console.log('App onUserLogIn userId');
-    console.log(userId);
-    this.setState(
-      {authedUser: userId}
-    )
+    this.props.dispatch(setAuthedUser(userId))
   }
 
   render() {
-    console.log('App render authedUser');
-    console.log(this.state.authedUser);
-
     return (
       <Router>
         <Fragment>

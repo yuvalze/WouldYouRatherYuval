@@ -18,27 +18,15 @@ class SignIn extends Component {
       }
 
     onUserLogin = () => {
-        console.log('SignIn onUserLogin his.state.selectedUser');
-        console.log(this.state.selectedUser);
         this.props.onUserLogIn(this.state.selectedUser);
     }
 
     render() {
-        console.log('SignIn render users props');
-        console.log(this.props.users);
-
         const usersOptionsArr = Object.values(this.props.users);
-
-        console.log('SignIn render users arr');
-        console.log(usersOptionsArr);
- 
         const usersOptionsDropDown = usersOptionsArr.map (userObj => { 
             return {value: userObj.id, label: userObj.name}
         });   
         
-        console.log('SignIn render usersOptionsDropDown');
-        console.log(usersOptionsDropDown);
-
         const userDefaultOption = usersOptionsDropDown[0];
 
         return(
