@@ -6,8 +6,9 @@ import LoadingBar from 'react-redux-loading'
 import SignIn from './SignIn'
 import Logout from './Logout'
 import HomePage from './HomePage'
+import Leaderboard from './LeaderBoard'
 import { setAuthedUser } from '../actions/authedUser'
-import CheckRoute from '../route/CheckRoute'
+import CheckAuthUser from '../route/CheckAuthUser'
 
 class App extends Component {
 
@@ -43,14 +44,8 @@ class App extends Component {
                         }}
                       />
                     )}/>
-                    <Route path='/homePage' render={() => (
-                        !this.props.authedUser ? (
-                            <Redirect to='/'/>
-                        ) : (
-                            <HomePage/>
-                        )
-                    )}/>
-                    <CheckRoute path="/leaderboard" authUser={this.props.authedUser} component={HomePage} />                    
+                    <CheckAuthUser path="/homePage" authUser={this.props.authedUser} component={HomePage} />  
+                    <CheckAuthUser path="/leaderboard" authUser={this.props.authedUser} component={Leaderboard} />                    
                     <Route path='/logout' render={({ history }) => (
                       <Logout
                           users={this.props.users[0]}

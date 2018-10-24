@@ -4,8 +4,8 @@ import Nav from './Nav'
 
 class HomePage extends Component {
     render() {
-        console.log('HomePage render');
-        console.log(this.props.authedUser);
+        console.log('HomePage render props');
+        console.log(this.props);
         return (
             <div>
                 <div>

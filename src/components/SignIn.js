@@ -27,8 +27,6 @@ class SignIn extends Component {
             return {value: userObj.id, label: userObj.name}
         });   
         
-        const userDefaultOption = usersOptionsDropDown[0];
-
         return(
             <div className='create-contact-form'>
                 <Dropdown options={usersOptionsDropDown} onChange={this.onSelectUser}

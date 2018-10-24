@@ -1,5 +1,4 @@
 import React, { Component} from 'react'
-import { connect } from 'react-redux'
 import 'react-dropdown/style.css'
 import PropTypes from 'prop-types';
 import SignIn from './SignIn'
