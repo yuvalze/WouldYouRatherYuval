@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import {handleGetQuestions} from '../actions/questions'
 import Nav from './Nav'
 
 class HomePage extends Component {
+
+    componentDidMount() {
+        this.props.dispatch(handleGetQuestions())
+      }
+    
     render() {
         console.log('HomePage render props');
         console.log(this.props);
@@ -17,9 +23,14 @@ class HomePage extends Component {
     }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, questions}) {
+    console.log('HomePage mapStateToProps authedUser')
+    console.log(authedUser)
+    console.log('HomePage mapStateToProps questions')
+    console.log(questions)
     return {
-        authedUser
+        authedUser,
+        questions
     }
   }
   
