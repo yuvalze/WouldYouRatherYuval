@@ -1,8 +1,8 @@
 import React, {Component}  from 'react'
-import PropTypes from 'prop-types'
 import Dropdown from 'react-dropdown'
 import { connect } from 'react-redux'
 import {getAnsweredQuestionsArr} from '../utils/helpers'
+import {handleGetQuestions} from '../actions/questions'
 
 
 const isShowAnsweredDropDown = [
@@ -19,6 +19,10 @@ class QuestionsList extends Component {
     constructor() {
         super();
         this.onSelectIsShowAnswered = this.onSelectIsShowAnswered.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.dispatch(handleGetQuestions())
     }
 
     onSelectIsShowAnswered = (selectObj) => {
@@ -42,12 +46,14 @@ class QuestionsList extends Component {
                     <ul>
                         {questionsArr.map((question) => (
                             <li key={question.id}>
-                                <div>
-                                    <div> {question.author} ask:</div>
-                                    <div> {question.optionOne.text} </div>
-                                    <div> or </div>
-                                    <div> {question.optionTwo.text} </div>
-                                </div>
+                                <button className='btn' onClick={()=>{}}>
+                                    <div>
+                                        <div> {question.author} ask:</div>
+                                        <div> {question.optionOne.text} </div>
+                                        <div> or </div>
+                                        <div> {question.optionTwo.text} </div>
+                                    </div>
+                                </button>
                             </li>
                         ))}
                     </ul>
@@ -57,14 +63,11 @@ class QuestionsList extends Component {
     }
 }
 
-QuestionsList.propTypes = {
-    questions: PropTypes.object.isRequired
-  };
 
-
-function mapStateToProps ({ authedUser}) {
+function mapStateToProps ({ authedUser, questions}) {
     return {
-        authedUser
+        authedUser,
+        questions
     }
   }
   

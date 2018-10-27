@@ -2,6 +2,7 @@ import React, { Component} from 'react'
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 
 
 class SignIn extends Component {
@@ -45,10 +46,16 @@ class SignIn extends Component {
 }
 
 SignIn.propTypes = {
-    users: PropTypes.object.isRequired,
     onUserLogIn:  PropTypes.func.isRequired
   };
 
-export default SignIn
+
+function mapStateToProps ({users}) {
+    return {
+        users : users[0]
+    }
+  }
+  
+export default connect(mapStateToProps)(SignIn)
 
 

@@ -15,3 +15,4 @@ export function getAnsweredQuestionsArr (authedUserId, questionsObj, isAnswered)
     }
     return questionResult;
 }
+
