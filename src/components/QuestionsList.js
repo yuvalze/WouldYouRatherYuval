@@ -1,6 +1,8 @@
 import React, {Component}  from 'react'
 import PropTypes from 'prop-types'
 import Dropdown from 'react-dropdown'
+import { connect } from 'react-redux'
+import {getAnsweredQuestionsArr} from '../utils/helpers'
 
 
 const isShowAnsweredDropDown = [
@@ -26,9 +28,10 @@ class QuestionsList extends Component {
     }
 
     render() {
-        const questionsArr = Object.values(this.props.questions || {});
-        console.log('QuestionsList questionsArr')
-        console.log(questionsArr)
+        const questionsArr = getAnsweredQuestionsArr(
+            this.props.authedUser, 
+            this.props.questions, 
+            this.state.isShowAnswered === 'Answered');
         return (
             <div>
                 <div>
@@ -58,4 +61,11 @@ QuestionsList.propTypes = {
     questions: PropTypes.object.isRequired
   };
 
-export default QuestionsList
+
+function mapStateToProps ({ authedUser}) {
+    return {
+        authedUser
+    }
+  }
+  
+export default connect(mapStateToProps)(QuestionsList)
