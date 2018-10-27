@@ -1,11 +1,11 @@
 import React, {Component}  from 'react'
 import PropTypes from 'prop-types'
 
-class UnAnsweredList extends Component {
+class QuestionsList extends Component {
 
     render() {
         const questionsArr = Object.values(this.props.questions || {});
-        console.log('UnAnsweredList questionsArr')
+        console.log('QuestionsList questionsArr')
         console.log(questionsArr)
         return (
             <div>
@@ -26,8 +26,8 @@ class UnAnsweredList extends Component {
     }
 }
 
-UnAnsweredList.propTypes = {
+QuestionsList.propTypes = {
     questions: PropTypes.object.isRequired
   };
 
-export default UnAnsweredList
+export default QuestionsList

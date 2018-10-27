@@ -12,13 +12,17 @@ class SignIn extends Component {
 
 
     onSelectUser = (UserObj) => {
-        this.setState(() => ({
-            selectedUser: UserObj.value
-          }))
+        if (UserObj &&  UserObj.value) {
+            this.setState(() => ({
+                selectedUser: UserObj.value
+            }))
+        }
       }
 
     onUserLogin = () => {
-        this.props.onUserLogIn(this.state.selectedUser);
+        if (this.state.selectedUser) {
+            this.props.onUserLogIn(this.state.selectedUser);
+        }
     }
 
     render() {
@@ -28,12 +32,15 @@ class SignIn extends Component {
         });   
         
         return(
-            <div className='create-contact-form'>
-                <Dropdown options={usersOptionsDropDown} onChange={this.onSelectUser}
-                                                 value={this.state.selectedUser} placeholder="Select a user" />
-                <button className='heart-button' onClick={this.onUserLogin}>
-                    Sign In
-                </button>
+            <div>
+                <h3 className='center'>Select User from drop down and press 'Sign In'</h3>
+                <div className='tweet-icons'>
+                    <Dropdown options={usersOptionsDropDown} onChange={this.onSelectUser}
+                                                    value={this.state.selectedUser} placeholder="Select a user" />
+                    <button className='btn' onClick={this.onUserLogin}>
+                        Sign In
+                    </button>
+                </div>
             </div>
         )
     }
