@@ -11,13 +11,13 @@ class SignIn extends Component {
     }
 
 
-    onSelectUser = (UserObj) => {
-        if (UserObj &&  UserObj.value) {
+    onSelectUser = (userObj) => {
+        if (userObj &&  userObj.value) {
             this.setState(() => ({
-                selectedUser: UserObj.value
+                selectedUser: userObj.value
             }))
         }
-      }
+    }
 
     onUserLogin = () => {
         if (this.state.selectedUser) {
@@ -34,13 +34,11 @@ class SignIn extends Component {
         return(
             <div>
                 <h3 className='center'>Select User from drop down and press 'Sign In'</h3>
-                <div className='tweet-icons'>
                     <Dropdown options={usersOptionsDropDown} onChange={this.onSelectUser}
                                                     value={this.state.selectedUser} placeholder="Select a user" />
                     <button className='btn' onClick={this.onUserLogin}>
                         Sign In
                     </button>
-                </div>
             </div>
         )
     }
