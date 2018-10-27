@@ -20,6 +20,11 @@ export default function Nav () {
             Logout
           </NavLink>
         </li>
+        <li>
+          <NavLink to='/new' activeClassName='active'>
+            New Question
+          </NavLink>
+        </li>
       </ul>
     </nav>
   )
