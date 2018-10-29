@@ -5,7 +5,7 @@ class LeaderBoard extends Component {
     render() {
         return (
             <div>
-                <h1> The Leader Board </h1>
+                <h1> The Leader Board! </h1>
             </div>
         )
     }
