@@ -8,6 +8,7 @@ import Logout from './Logout'
 import QuestionsList from './QuestionsList'
 import Leaderboard from './LeaderBoard'
 import CreateQuestion from './CreateQuestion'
+import Poll from './Poll'
 import { setAuthedUser } from '../actions/authedUser'
 import CheckAuthUser from '../route/CheckAuthUser'
 import Nav from './Nav'
@@ -62,6 +63,7 @@ class App extends Component {
                         }}
                       />
                     )}/>
+                    <CheckAuthUser path='/questions/:question_id' authUser={this.props.authedUser} component={Poll} />
                     <CheckAuthUser path="/homePage" authUser={this.props.authedUser} component={QuestionsList} />  
                     <CheckAuthUser path="/leaderboard" authUser={this.props.authedUser} component={Leaderboard} />   
                     <CheckAuthUser path="/new" authUser={this.props.authedUser} component={CreateQuestion} />                 

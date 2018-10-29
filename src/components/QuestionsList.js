@@ -31,6 +31,11 @@ class QuestionsList extends Component {
         })
     }
 
+    toPoll = (e, question_id) => {
+        e.preventDefault()
+        this.props.history.push(`/questions/${question_id}`)
+    }
+
     render() {
         const questionsArr = getAnsweredQuestionsArr(
             this.props.authedUser, 
@@ -46,7 +51,7 @@ class QuestionsList extends Component {
                     <ul>
                         {questionsArr.map((question) => (
                             <li key={question.id}>
-                                <button className='btn' onClick={()=>{}}>
+                                <button className='btn' onClick={(e) => this.toPoll(e, question.id)}>
                                     <div>
                                         <div> {question.author} ask:</div>
                                         <div> {question.optionOne.text} </div>
