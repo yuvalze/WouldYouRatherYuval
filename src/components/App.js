@@ -5,12 +5,21 @@ import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
 import SignIn from './SignIn'
 import Logout from './Logout'
-import HomePage from './HomePage'
+import QuestionsList from './QuestionsList'
 import Leaderboard from './LeaderBoard'
+import CreateQuestion from './CreateQuestion'
+import Poll from './Poll'
 import { setAuthedUser } from '../actions/authedUser'
 import CheckAuthUser from '../route/CheckAuthUser'
+import Nav from './Nav'
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.onUserLogIn = this.onUserLogIn.bind(this);
+    this.onUserLogOut = this.onUserLogOut.bind(this);
+  }
 
   componentDidMount() {
     this.props.dispatch(handleInitialData())
@@ -21,11 +30,14 @@ class App extends Component {
   }
 
   onUserLogOut() {
-    this.props.dispatch(setAuthedUser(undefined));
+    this.props.dispatch(setAuthedUser(null));
   }
 
+  getUserName() {
+    return this.props.users[this.props.authedUser].name;
+  }  
+
   render() {
-    console.log('App render');
     return (
       <BrowserRouter>
         <Fragment>
@@ -34,22 +46,30 @@ class App extends Component {
             {this.props.loading === true
               ? null :
                 <div>
+                 {this.props.authedUser && 
+                  <Fragment>
+                      <div>
+                        <h1> Hello {this.getUserName()} </h1>
+                      </div>
+                      <Nav />
+                    </Fragment> 
+                 }
                   <Switch>
                     <Route path='/' exact render={({ history }) => (
                       <SignIn
-                        users={this.props.users[0]}
                         onUserLogIn={(userId) => {
                         this.onUserLogIn(userId)
                         history.push('/homePage')
                         }}
                       />
                     )}/>
-                    <CheckAuthUser path="/homePage" authUser={this.props.authedUser} component={HomePage} />  
-                    <CheckAuthUser path="/leaderboard" authUser={this.props.authedUser} component={Leaderboard} />                    
+                    <CheckAuthUser path='/questions/:question_id' authUser={this.props.authedUser} component={Poll} />
+                    <CheckAuthUser path="/homePage" authUser={this.props.authedUser} component={QuestionsList} />  
+                    <CheckAuthUser path="/leaderboard" authUser={this.props.authedUser} component={Leaderboard} />   
+                    <CheckAuthUser path="/new" authUser={this.props.authedUser} component={CreateQuestion} />                 
                     <Route path='/logout' render={({ history }) => (
                       <Logout
-                          users={this.props.users[0]}
-                          onUserLogOut={()=> this.onUserLogOut}
+                          onUserLogOut={this.onUserLogOut}
                           onUserLogIn={(userId) => {
                               this.onUserLogIn(userId)
                               history.push('/homePage')
@@ -70,7 +90,7 @@ class App extends Component {
 function mapStateToProps ({ users, authedUser }) {
   return {
     loading: (users === null || users === undefined || users[0] === undefined),
-      users,
+      users: users[0],
       authedUser
   }
 }

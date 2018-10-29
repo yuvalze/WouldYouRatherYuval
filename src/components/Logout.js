@@ -1,6 +1,7 @@
 import React, { Component} from 'react'
 import 'react-dropdown/style.css'
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 import SignIn from './SignIn'
 
 
@@ -11,10 +12,14 @@ class Logout extends Component {
         this.props.onUserLogOut();
     }
 
+    componentDidUpdate() {
+        console.log('Logout componentDidUpdate');
+        this.props.onUserLogOut();
+    }
+
     render() {
         return(
             <SignIn
-                users={this.props.users}
                 onUserLogIn={this.props.onUserLogIn}
             />
         )
@@ -22,11 +27,16 @@ class Logout extends Component {
 }
 
 Logout.propTypes = {
-    users: PropTypes.object.isRequired,
     onUserLogIn: PropTypes.func.isRequired,
     onUserLogOut: PropTypes.func.isRequired
 };
 
-export default Logout
+function mapStateToProps ({users}) {
+    return {
+        users : users[0]
+    }
+  }
+  
+export default connect(mapStateToProps)(Logout)
 
 

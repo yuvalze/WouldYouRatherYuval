@@ -13,5 +13,7 @@ export function getAnsweredQuestionsArr (authedUserId, questionsObj, isAnswered)
             !(((question.optionOne||{}).votes ||[]).concat((question.optionTwo||{}).votes ||[])).includes(authedUserId)
         )
     }
+    questionResult.sort((a,b) => b.timestamp - a.timestamp);
     return questionResult;
 }
+
