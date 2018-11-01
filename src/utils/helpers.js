@@ -17,3 +17,8 @@ export function getAnsweredQuestionsArr (authedUserId, questionsObj, isAnswered)
     return questionResult;
 }
 
+export function isUserAnsweredQuestion (questionId, UserData) {
+    const userAnswered = Object.keys((UserData ||{}).answers || {});
+    return (userAnswered || []).includes(questionId);
+}
+

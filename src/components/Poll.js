@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { isUserAnsweredQuestion } from '../utils/helpers'
+import { handleSaveQuestionAnswer } from '../actions/questions'
 
 class Poll extends Component {
 
@@ -8,7 +10,10 @@ class Poll extends Component {
     }
 
     handleSubmit = (e) => {
+        const {authedUser, questionData} = this.props;
+        const {chooseResult} = this.state;
         e.preventDefault();
+        this.props.dispatch(handleSaveQuestionAnswer(authedUser, questionData.id, chooseResult));
     }
 
     handleChange = (e) => {
@@ -47,24 +52,27 @@ class Poll extends Component {
                             </div>
                         </p>
                     </fieldset>
+                    {!this.props.isAnswered &&
                     <button
                         className='btn'
                         type='submit'>
                         Submit
-                    </button>
+                    </button>}
                 </form>
             </div>
         )
     }
 }
 
-function mapStateToProps ({ questions, users }, props) {
+function mapStateToProps ({ questions, users, authedUser}, props) {
     const { question_id } = props.match.params
 
     return {
         question_id,
         questionData: questions[question_id],
-        users : users[0]
+        users,
+        isAnswered: isUserAnsweredQuestion(question_id, users[authedUser]),
+        authedUser
     }
 }
 

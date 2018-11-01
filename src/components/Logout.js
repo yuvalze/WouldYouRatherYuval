@@ -33,7 +33,7 @@ Logout.propTypes = {
 
 function mapStateToProps ({users}) {
     return {
-        users : users[0]
+        users
     }
   }
   
