@@ -1,41 +1,61 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import {getQuestionStatistics} from '../utils/helpers'
 
 class PollResult extends Component {
 
 
     render() {
         const { questionData, authorUserData, authedUserId } = this.props
+        const questionStatistics = getQuestionStatistics(questionData, authedUserId);
         const userNameAskAvatarUrl = authorUserData.avatarURL;
         const userNameAskName = authorUserData.name;
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <fieldset>
-                        <legend>Result...</legend>
-                        <p>
+                <fieldset>
+                    <legend>Results:</legend>
+
+                        <h2>Asked by {userNameAskName}</h2>
+                        <div>
                             <img
                                 src={userNameAskAvatarUrl}
                                 alt={`Avatar of ${userNameAskName}`}
                                 className='avatar'
                             />
-                            <div>
-                                <label>
-                                    <input type='radio' name='question' value='optionOne' 
-                                        checked={questionData.optionOne.votes.includes(authedUserId)}/>
+                            <span class='spanBlockYellow'>
+                                {questionStatistics.optionSelectedByUser === 'optionOne' &&
+                                    <div>
+                                        <h2>***Your Votes***</h2>
+                                    </div>
+                                }
+                                <div>
                                     {questionData.optionOne.text}
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    <input type='radio' name='question' value='optionTwo'
-                                         checked={questionData.optionTwo.votes.includes(authedUserId)}/>
+                                </div>
+                                <div>
+                                    {questionStatistics.optionOnePercent} %
+                                </div>
+                                <div>
+                                    {questionStatistics.optionOneNumber} out of {questionStatistics.totalNumberVote} votes
+                                </div>
+                            </span>
+                            <span class='spanBlockGreen'>
+                                {questionStatistics.optionSelectedByUser === 'optionTwo' &&
+                                    <div>
+                                        <h2>***Your Votes***</h2>
+                                    </div>
+                                }
+                                <div>
                                     {questionData.optionTwo.text}
-                                </label>
-                            </div>
-                        </p>
-                    </fieldset>
-                </form>
+                                </div>
+                                <div>
+                                    {questionStatistics.optionTwoPercent} %
+                                </div>
+                                <div>
+                                    {questionStatistics.optionTwoNumber} out of {questionStatistics.totalNumberVote} votes
+                                </div>
+                            </span>
+                        </div>
+                </fieldset>
             </div>
         )
     }
