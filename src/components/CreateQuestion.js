@@ -63,7 +63,7 @@ class CreateQuestion extends Component {
                         maxLength={280}
                     />
 
-                    <input type="submit" value="Submit"/>
+                    <input type="submit" disabled={ !this.state.optionOneText || !this.state.optionTwoText } value="Submit"/>
 
                 </form>
             </div>
