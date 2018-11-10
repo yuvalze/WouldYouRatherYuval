@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import {getQuestionStatistics} from '../utils/helpers'
 
-class PollResult extends Component {
 
-
-    render() {
-        const { questionData, authorUserData, authedUserId } = this.props
+  function PollResult(props) {
+        const { questionData, authorUserData, authedUserId } = props
         const questionStatistics = getQuestionStatistics(questionData, authedUserId);
         const userNameAskAvatarUrl = authorUserData.avatarURL;
         const userNameAskName = authorUserData.name;
@@ -29,7 +27,7 @@ class PollResult extends Component {
                                     </div>
                                 }
                                 <div>
-                                    {questionData.optionOne.text}
+                                    <h3>{questionData.optionOne.text}</h3>
                                 </div>
                                 <div>
                                     {questionStatistics.optionOnePercent} %
@@ -45,7 +43,7 @@ class PollResult extends Component {
                                     </div>
                                 }
                                 <div>
-                                    {questionData.optionTwo.text}
+                                    <h3>{questionData.optionTwo.text}</h3>
                                 </div>
                                 <div>
                                     {questionStatistics.optionTwoPercent} %
@@ -58,7 +56,6 @@ class PollResult extends Component {
                 </fieldset>
             </div>
         )
-    }
 }
 
 PollResult.propTypes = {

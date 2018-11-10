@@ -66,7 +66,7 @@ class App extends Component {
                     <CheckAuthUser path='/questions/:question_id' authUser={this.props.authedUser} component={Poll} />
                     <CheckAuthUser path="/homePage" authUser={this.props.authedUser} component={QuestionsList} />  
                     <CheckAuthUser path="/leaderboard" authUser={this.props.authedUser} component={Leaderboard} />   
-                    <CheckAuthUser path="/new" authUser={this.props.authedUser} component={CreateQuestion} />                 
+                    <CheckAuthUser path="/add" authUser={this.props.authedUser} component={CreateQuestion} />                 
                     <Route path='/logout' render={({ history }) => (
                       <Logout
                           onUserLogOut={this.onUserLogOut}

@@ -1,7 +1,8 @@
-import { getQuestionsData, saveQuestionAnswer } from '../utils/api'
+import { getQuestionsData, saveQuestionAnswer, saveQuestion } from '../utils/api'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const SEND_QUESTIONS = 'SAVE_QUESTIONS'
+export const SEND_NEW_QUESTION = 'SEND_NEW_QUESTION'
 
 function receiveQuestions (questions) {
     return {
@@ -19,6 +20,13 @@ function receiveQuestions (questions) {
     }
   }
 
+  function sendNewQuestion (formattedQuestionObj) {
+    return {
+      type: SEND_NEW_QUESTION,
+      formattedQuestionObj
+    }
+  }
+
   export function handleGetQuestions () {
     return (dispatch) => {
       return getQuestionsData()
@@ -33,6 +41,15 @@ function receiveQuestions (questions) {
       return saveQuestionAnswer(authedUser, qid, answer)
         .then(() => {
           dispatch(sendQuestionAnswer({authedUser, qid, answer}))
+        })
+    }
+  }
+
+  export function handleAddNewQuestion(optionOneText, optionTwoText, author) {
+    return dispatch => {
+      return saveQuestion(optionOneText, optionTwoText, author)
+        .then(formattedQuestionObj => {
+          dispatch(sendNewQuestion(formattedQuestionObj))
         })
     }
   }
