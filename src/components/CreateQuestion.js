@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import { handleAddNewQuestion } from '../actions/questions'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class CreateQuestion extends Component {
 
     state = {
         optionOneText: '',
-        optionTwoText: ''
+        optionTwoText: '',
+        toHome: false
       }
 
     handleOptionOneChange = (e) => {
@@ -34,18 +36,23 @@ class CreateQuestion extends Component {
     
         this.setState(() => ({
             optionOneText: '',
-            optionTwoText: ''
+            optionTwoText: '',
+            toHome: true
         }))
       }
 
     render() {
+        if (this.state.toHome === true) {
+            return <Redirect to='/homePage' />
+          }
+
         return (
-            <div class="container">
+            <div className="container">
                 <div>
                     <h2>Would You Rather</h2>
                 </div>
                 <form action="action_page.php" onSubmit={this.handleSubmit}>
-                    <label for="fname">Option one</label>
+                    <label>Option one</label>
                     <textarea
                         placeholder="Enter Option one text here"
                         value={this.state.optionOneText}
@@ -54,7 +61,7 @@ class CreateQuestion extends Component {
                         maxLength={280}
                     />
 
-                    <label for="lname">Option two</label>
+                    <label>Option two</label>
                     <textarea
                         placeholder="Enter Option two text here"
                         value={this.state.optionTwoText}
