@@ -51,7 +51,7 @@ class CreateQuestion extends Component {
                 <div>
                     <h2>Would You Rather</h2>
                 </div>
-                <form action="action_page.php" onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <label>Option one</label>
                     <textarea
                         placeholder="Enter Option one text here"
