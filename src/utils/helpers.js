@@ -40,3 +40,19 @@ export function getQuestionStatistics(questionData, authedUserId) {
     return {optionOneNumber, optionOnePercent, optionTwoNumber, optionTwoPercent, totalNumberVote, optionSelectedByUser};
 }
 
+// return Leader board data
+export function getLeaderBoardDataArr(users) {
+    const usersValueArr = Object.values(users || {});
+    const leaderBoardDataArr = usersValueArr.map(userObj=> {
+        return {
+            name: userObj.name,
+            pictureUrl: userObj.avatarURL,
+            numQuestionsAsked: userObj.questions.length,
+            numQuestionsAnswered: Object.entries(userObj.answers).length,
+            score: userObj.questions.length + Object.entries(userObj.answers).length
+        }
+    });
+    leaderBoardDataArr.sort((a,b) => b.score - a.score);
+    return leaderBoardDataArr;
+}
+

@@ -1,20 +1,34 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import { getLeaderBoardDataArr } from '../utils/helpers'
 
 class LeaderBoard extends Component {
 
     render() {
-        const usersValueArr = Object.values(this.props.users); 
         return (
             <div>
                 <h1> The Leader Board !</h1>
                 <table>
-                    {usersValueArr.map(userObj =>
-                        <tr>
-                            {userObj.name}
-                        </tr>
-                        )
-                    }
+                    {this.props.leaderBoardDataArr.map(dataObj =>
+                        <p>
+                            <tr>
+                               Name: {dataObj.name}
+                            </tr>
+                            <tr>
+                                <img
+                                    src={dataObj.pictureUrl}
+                                    alt={`Avatar of ${dataObj.name}`}
+                                    className='avatar'
+                                />
+                            </tr>
+                            <tr>
+                                Asked: {dataObj.numQuestionsAsked}
+                            </tr>
+                            <tr>
+                                Asked: {dataObj.numQuestionsAnswered}
+                            </tr>
+                        </p>
+                    )}
                 </table>
             </div>
         )
@@ -24,7 +38,8 @@ class LeaderBoard extends Component {
 
 function mapStateToProps ({ users}) {
     return {
-        users
+        users,
+        leaderBoardDataArr: getLeaderBoardDataArr(users)
     }
   }
   
