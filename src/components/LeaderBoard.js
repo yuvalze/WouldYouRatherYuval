@@ -7,12 +7,12 @@ class LeaderBoard extends Component {
     render() {
         return (
             <div>
-                <h1> The Leader Board !</h1>
-                <table>
-                    {this.props.leaderBoardDataArr.map(dataObj =>
-                        <p>
+                <h3> The Leader Board</h3>
+                <ol>
+                    {this.props.leaderBoardDataArr.map((dataObj, index) =>
+                        <li className="blockLeaderBoard" key={index}>
                             <tr>
-                               Name: {dataObj.name}
+                                Name: {dataObj.name} 
                             </tr>
                             <tr>
                                 <img
@@ -20,16 +20,19 @@ class LeaderBoard extends Component {
                                     alt={`Avatar of ${dataObj.name}`}
                                     className='avatar'
                                 />
+                                <td>
+                                    <span className="textarea">Score: {dataObj.score}</span>.
+                                </td>
                             </tr>
                             <tr>
                                 Asked: {dataObj.numQuestionsAsked}
                             </tr>
                             <tr>
-                                Asked: {dataObj.numQuestionsAnswered}
+                                Answered: {dataObj.numQuestionsAnswered}
                             </tr>
-                        </p>
+                        </li>
                     )}
-                </table>
+                </ol>
             </div>
         )
     }
