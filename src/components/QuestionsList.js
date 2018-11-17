@@ -51,12 +51,14 @@ class QuestionsList extends Component {
                     <ul>
                         {questionsArr.map((question) => (
                             <li key={question.id}>
-                                <button className='btn' onClick={(e) => this.toPoll(e, question.id)}>
+                                <button onClick={(e) => this.toPoll(e, question.id)}>
                                     <div>
-                                        <div> {question.author} ask:</div>
-                                        <div> {question.optionOne.text} </div>
-                                        <div> or </div>
-                                        <div> {question.optionTwo.text} </div>
+                                        <h2> {question.author} ask:</h2>
+                                        <div className='blockQuestionsList'>
+                                            <h3> {question.optionOne.text} </h3>
+                                            <div> or </div>
+                                            <h3> {question.optionTwo.text} </h3>
+                                        </div>
                                     </div>
                                 </button>
                             </li>

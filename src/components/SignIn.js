@@ -37,7 +37,7 @@ class SignIn extends Component {
                 <h3 className='center'>Select User from drop down and press 'Sign In'</h3>
                     <Dropdown options={usersOptionsDropDown} onChange={this.onSelectUser}
                                                     value={this.state.selectedUser} placeholder="Select a user" />
-                    <button className='btn' onClick={this.onUserLogin}>
+                    <button disabled={this.state.selectedUser === undefined} className='btn' onClick={this.onUserLogin}>
                         Sign In
                     </button>
             </div>

@@ -20,9 +20,9 @@ a {
   text-transform: uppercase;
   margin: 35px auto;
   padding: 10px;
-  border: 1px solid rgba(0,0,0,.29);
+  border: 1px solid rgba(57, 151, 96, 0.29);
   cursor: pointer;
-  background: #fff;
+  background: rgb(193, 233, 134);
   font-size: 16px;
   width: 250px;
   position: relative;
@@ -37,6 +37,12 @@ a {
   outline: 0;
   font-weight: 700;
   border-width: 2px;
+}
+
+.btn:disabled{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
 
 .center {
@@ -125,4 +131,14 @@ span.spanBlockGreen {
   padding: 5px;
   border: 5px solid gray;        
   background-color: whitesmoke; 
+}
+
+.blockQuestionsList {
+  display: block;
+  width: 90%;
+  height: 150px;
+  padding: 5px;
+  color: #C3392A;
+  border: 5px solid gray;        
+  background-color: rgb(243, 235, 235); 
 }
