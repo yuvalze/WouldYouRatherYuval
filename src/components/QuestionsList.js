@@ -53,7 +53,7 @@ class QuestionsList extends Component {
                             <li key={question.id}>
                                 <button onClick={(e) => this.toPoll(e, question.id)}>
                                     <div>
-                                        <h2> {question.author} ask:</h2>
+                                        <h2> {(this.props.users[question.author] ||{}).name} ask:</h2>
                                         <div className='blockQuestionsList'>
                                             <h3> {question.optionOne.text} </h3>
                                             <div> or </div>
@@ -71,10 +71,11 @@ class QuestionsList extends Component {
 }
 
 
-function mapStateToProps ({ authedUser, questions}) {
+function mapStateToProps ({ authedUser, questions, users}) {
     return {
         authedUser,
-        questions
+        questions,
+        users
     }
   }
   

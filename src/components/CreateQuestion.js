@@ -52,24 +52,28 @@ class CreateQuestion extends Component {
                     <h2>Would You Rather</h2>
                 </div>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Option one</label>
-                    <textarea
-                        placeholder="Enter Option one text here"
-                        value={this.state.optionOneText}
-                        onChange={this.handleOptionOneChange}
-                        className='textarea'
-                        maxLength={280}
-                    />
-
-                    <label>Option two</label>
-                    <textarea
-                        placeholder="Enter Option two text here"
-                        value={this.state.optionTwoText}
-                        onChange={this.handleOptionTwoChange}
-                        className='textarea'
-                        maxLength={280}
-                    />
-
+                    <div>
+                        <label>Option one</label>
+                        <textarea 
+                            placeholder="Enter Option one text here"
+                            value={this.state.optionOneText}
+                            onChange={this.handleOptionOneChange}
+                            className='textarea'
+                            maxLength={280}
+                        />
+                    </div>
+                    <div>&nbsp;</div>
+                    <div>
+                        <label>Option two</label>
+                        <textarea 
+                            placeholder="Enter Option two text here"
+                            value={this.state.optionTwoText}
+                            onChange={this.handleOptionTwoChange}
+                            className='textarea'
+                            maxLength={280}
+                        />
+                    </div>
+                    <div>&nbsp;</div>
                     <input type="submit" disabled={ !this.state.optionOneText || !this.state.optionTwoText } value="Submit"/>
 
                 </form>
