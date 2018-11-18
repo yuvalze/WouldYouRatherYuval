@@ -11,25 +11,20 @@ class LeaderBoard extends Component {
                 <ol>
                     {this.props.leaderBoardDataArr.map((dataObj, index) =>
                         <li className="blockLeaderBoard" key={index}>
-                            <tr>
-                                Name: {dataObj.name} 
-                            </tr>
-                            <tr>
-                                <img
-                                    src={dataObj.pictureUrl}
-                                    alt={`Avatar of ${dataObj.name}`}
-                                    className='avatar'
-                                />
-                                <td>
-                                    <span className="textarea">Score: {dataObj.score}</span>.
-                                </td>
-                            </tr>
-                            <tr>
+                            <div>
+                                Name: {dataObj.name}&nbsp;&nbsp;<span className="textarea">Score: {dataObj.score}</span>.
+                            </div>                            
+                            <img
+                                src={dataObj.pictureUrl}
+                                alt={`Avatar of ${dataObj.name}`}
+                                className='avatar'
+                            />
+                            <div>
                                 Asked: {dataObj.numQuestionsAsked}
-                            </tr>
-                            <tr>
+                            </div>
+                            <div>
                                 Answered: {dataObj.numQuestionsAnswered}
-                            </tr>
+                            </div>
                         </li>
                     )}
                 </ol>

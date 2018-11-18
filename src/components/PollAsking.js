@@ -31,7 +31,7 @@ class PollAsking extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <fieldset>
                         <legend>Would You Rather...</legend>
-                        <p>
+                        <div>
                             <img
                                 src={userNameAskAvatarUrl}
                                 alt={`Avatar of ${userNameAskName}`}
@@ -40,18 +40,18 @@ class PollAsking extends Component {
                             <div>
                                 <label>
                                     <input type='radio' name='question' value='optionOne' checked={this.state.chooseResult === 'optionOne'} 
-                                        onClick={this.handleChange}/>
+                                        onChange={this.handleChange}/>
                                     {questionData.optionOne.text}
                                 </label>
                             </div>
                             <div>
                                 <label>
                                     <input type='radio' name='question' value='optionTwo' checked={this.state.chooseResult === 'optionTwo'}
-                                         onClick={this.handleChange}/>
+                                         onChange={this.handleChange}/>
                                     {questionData.optionTwo.text}
                                 </label>
                             </div>
-                        </p>
+                        </div>
                     </fieldset>
                     <button
                         className='btn'

@@ -20,7 +20,7 @@ import {getQuestionStatistics} from '../utils/helpers'
                                 alt={`Avatar of ${userNameAskName}`}
                                 className='avatar'
                             />
-                            <span class='spanBlockYellow'>
+                            <span className='spanBlockYellow'>
                                 {questionStatistics.optionSelectedByUser === 'optionOne' &&
                                     <div>
                                         <h2>***Your Votes***</h2>
@@ -36,7 +36,7 @@ import {getQuestionStatistics} from '../utils/helpers'
                                     {questionStatistics.optionOneNumber} out of {questionStatistics.totalNumberVote} votes
                                 </div>
                             </span>
-                            <span class='spanBlockGreen'>
+                            <span className='spanBlockGreen'>
                                 {questionStatistics.optionSelectedByUser === 'optionTwo' &&
                                     <div>
                                         <h2>***Your Votes***</h2>
@@ -60,7 +60,7 @@ import {getQuestionStatistics} from '../utils/helpers'
 
 PollResult.propTypes = {
     questionData: PropTypes.object.isRequired,
-    authedUserId: PropTypes.object.isRequired,
+    authedUserId: PropTypes.string.isRequired,
     authorUserData: PropTypes.object.isRequired
   };
 
