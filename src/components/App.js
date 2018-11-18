@@ -11,6 +11,7 @@ import CreateQuestion from './CreateQuestion'
 import Poll from './Poll'
 import { setAuthedUser } from '../actions/authedUser'
 import CheckAuthUser from '../route/CheckAuthUser'
+import NotFound from './NotFound'
 import Nav from './Nav'
 
 class App extends Component {
@@ -76,7 +77,7 @@ class App extends Component {
                           }}
                       />
                     )}/>
-                    <Redirect to='/'/>
+                    <Route component={NotFound}/>
                   </Switch>
                 </div>
             }

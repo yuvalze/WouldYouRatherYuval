@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect, Route } from 'react-router-dom'
 
-const CheckRoute = ({ component: Component, ...restProps }) => {
+const CheckAuthUser = ({ component: Component, ...restProps }) => {
   let isAuthUser =  {...restProps}.authUser;
   return (
     <Route
@@ -16,4 +16,4 @@ const CheckRoute = ({ component: Component, ...restProps }) => {
     />
   )
 }
-export default CheckRoute;
+export default CheckAuthUser;
