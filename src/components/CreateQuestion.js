@@ -11,19 +11,11 @@ class CreateQuestion extends Component {
         toHome: false
       }
 
-    handleOptionOneChange = (e) => {
-        const optionOneText = e.target.value
+      handleOptionChange = (e, optionTypeStr) => {
+        const optionValue = e.target.value
     
         this.setState(() => ({
-            optionOneText
-        }))
-      }
-
-      handleOptionTwoChange = (e) => {
-        const optionTwoText = e.target.value
-    
-        this.setState(() => ({
-            optionTwoText
+            [optionTypeStr] : optionValue
         }))
       }
 
@@ -57,7 +49,7 @@ class CreateQuestion extends Component {
                         <textarea 
                             placeholder="Enter Option one text here"
                             value={this.state.optionOneText}
-                            onChange={this.handleOptionOneChange}
+                            onChange={e => this.handleOptionChange(e, 'optionOneText')}
                             className='textarea'
                             maxLength={280}
                         />
@@ -68,7 +60,7 @@ class CreateQuestion extends Component {
                         <textarea 
                             placeholder="Enter Option two text here"
                             value={this.state.optionTwoText}
-                            onChange={this.handleOptionTwoChange}
+                            onChange={e => this.handleOptionChange(e, 'optionTwoText')}
                             className='textarea'
                             maxLength={280}
                         />

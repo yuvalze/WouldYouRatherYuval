@@ -12,12 +12,11 @@ const isShowAnsweredDropDown = [
 
 class QuestionsList extends Component {
 
-    state = {
-        isShowAnswered : 'Unanswered'
-    }
-
     constructor() {
         super();
+        this.state = {
+            isShowAnswered : 'Unanswered' 
+        }
         this.onSelectIsShowAnswered = this.onSelectIsShowAnswered.bind(this);
     }
 
@@ -32,7 +31,6 @@ class QuestionsList extends Component {
     }
 
     toPoll = (e, question_id) => {
-        e.preventDefault()
         this.props.history.push(`/questions/${question_id}`)
     }
 
