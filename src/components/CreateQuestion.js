@@ -35,7 +35,7 @@ class CreateQuestion extends Component {
 
     render() {
         if (this.state.toHome === true) {
-            return <Redirect to='/homePage' />
+            return <Redirect to='/' />
           }
 
         return (

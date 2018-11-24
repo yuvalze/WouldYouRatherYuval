@@ -4,13 +4,11 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
 import SignIn from './SignIn'
-import Logout from './Logout'
 import QuestionsList from './QuestionsList'
 import Leaderboard from './LeaderBoard'
 import CreateQuestion from './CreateQuestion'
 import Poll from './Poll'
 import { setAuthedUser } from '../actions/authedUser'
-import CheckAuthUser from '../route/CheckAuthUser'
 import NotFound from './NotFound'
 import Nav from './Nav'
 
@@ -45,43 +43,34 @@ class App extends Component {
           <LoadingBar />
           <div className='container'>
             {this.props.loading === true
-              ? null :
-                <div>
-                 {this.props.authedUser && 
-                  <Fragment>
-                      <div>
-                        <h1> Hello {this.getUserName()} </h1>
-                      </div>
-                      <Nav />
-                    </Fragment> 
-                 }
-                  <Switch>
-                    <Route path='/' exact render={({ history }) => (
-                      <SignIn
-                        onUserLogIn={(userId) => {
-                        this.onUserLogIn(userId)
-                        history.push('/homePage')
-                        }}
-                      />
-                    )}/>
-                    <CheckAuthUser path='/questions/:question_id' authUser={this.props.authedUser} component={Poll} />
-                    <CheckAuthUser path="/homePage" authUser={this.props.authedUser} component={QuestionsList} />  
-                    <CheckAuthUser path="/leaderboard" authUser={this.props.authedUser} component={Leaderboard} />   
-                    <CheckAuthUser path="/add" authUser={this.props.authedUser} component={CreateQuestion} />                 
-                    <Route path='/logout' render={({ history }) => (
-                      <Logout
-                          onUserLogOut={this.onUserLogOut}
-                          onUserLogIn={(userId) => {
-                              this.onUserLogIn(userId)
-                              history.push('/homePage')
-                          }}
-                      />
-                    )}/>
-                    <Route component={NotFound}/>
-                  </Switch>
-                </div>
+            ? null 
+            : <div>
+                  {this.props.authedUser
+                  ? <div>
+                      <div className='displayUserNameAndTitle'>
+                          <h1> Hello {this.getUserName()}&nbsp;&nbsp;&nbsp;</h1>
+                          <Nav />
+                          <button className='btnLogout' onClick={this.onUserLogOut}>
+                            Logout
+                          </button>
+                      </div> 
+                      <Switch>
+                        <Route path='/questions/:question_id' component={Poll} />
+                        <Route exact path='/' component={QuestionsList} />  
+                        <Route path='/leaderboard' component={Leaderboard} />   
+                        <Route path='/add' component={CreateQuestion} />                 
+                        <Route component={NotFound}/>
+                      </Switch>
+                    </div> 
+                  : <SignIn
+                      onUserLogIn={(userId) => {
+                      this.onUserLogIn(userId)
+                      }}
+                    />
+                  }  
+              </div>
             }
-          </div>
+        </div>
         </Fragment>
       </BrowserRouter>
     )

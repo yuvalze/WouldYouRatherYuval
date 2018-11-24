@@ -3,10 +3,14 @@ import { connect } from 'react-redux'
 import { isUserAnsweredQuestion } from '../utils/helpers'
 import PollAsking from './PollAsking'
 import PollResult from './PollResult'
+import NotFound from './NotFound'
 
 function Poll(props) {
     const { questionData, authedUserId, users, dispatch } = props;
     const authorUserData = (users || {})[(questionData ||{}).author];
+    if (!authorUserData) {
+        return <NotFound />
+      }
     return (
         <div>
             {props.isAnswered ? 
