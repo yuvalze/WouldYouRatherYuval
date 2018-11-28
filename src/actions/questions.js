@@ -4,7 +4,7 @@ export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const SEND_QUESTIONS = 'SAVE_QUESTIONS'
 export const SEND_NEW_QUESTION = 'SEND_NEW_QUESTION'
 
-function receiveQuestions (questions) {
+export function receiveQuestions (questions) {
     return {
       type: RECEIVE_QUESTIONS,
       questions

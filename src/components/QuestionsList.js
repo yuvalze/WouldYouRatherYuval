@@ -3,6 +3,7 @@ import Dropdown from 'react-dropdown'
 import { connect } from 'react-redux'
 import {getAnsweredQuestionsArr} from '../utils/helpers'
 import {handleGetQuestions} from '../actions/questions'
+import PropTypes from 'prop-types';
 
 
 const isShowAnsweredDropDown = [
@@ -11,7 +12,7 @@ const isShowAnsweredDropDown = [
 ];
 
 class QuestionsList extends Component {
-
+    
     constructor() {
         super();
         this.state = {
@@ -78,3 +79,10 @@ function mapStateToProps ({ authedUser, questions, users}) {
   }
   
 export default connect(mapStateToProps)(QuestionsList)
+
+QuestionsList.propTypes = {
+    authedUser: PropTypes.string.isRequired,
+    questions: PropTypes.object.isRequired,
+    users: PropTypes.object.isRequired
+  };
+
